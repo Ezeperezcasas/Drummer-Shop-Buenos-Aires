@@ -1,20 +1,18 @@
- let numeros = [10,20,30,40,50,60,70,80,90];
+/* EJEMPLO UTILIZANDO FOR */
 
-for (let i = 0; i < numeros.length;i++) {
-    console.log(numeros[i]);
-    
-} 
-
-
-
-let contador = 0;
-
-while(contador < 10){
-    console.log(contador);
-    contador ++;
-
+for (let i = 1; i <=4; i++) {
+    console.log(`ciclo ${i}`);
 }
 
+console.log('Fin del ciclo');
+
+/* EJEMPLO UTILIZANDO WHILE */
+
+let x = 1;
+while (x <= 7) {
+console.log(`ciclo ${x}`);
+x++;
+}
+console.log('Finaliza While');
 
 
-/* En el primer ejemplo aplico FOR y en el segundo ejemplo aplico WHILE */
