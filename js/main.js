@@ -1,57 +1,81 @@
-// VARIABLES GLOBALES 
-
-let descuento = 7;
-let producto = 100;
-let cant;
-let opcion;
-
-
-// FUNCIONES 
-
-
-const realizarCompra = (cant) => {
-    if(descuento <= cant) {
-        console.log(` Felicitaciones!! Usted compro ${cant} unidades y tiene un descuento.`);
-
-    } else {
-        console.log(`Su compra de ${cant} unidades no es suficiente para acceder al descuento.`);
-    }
-
+class Producto {
+  constructor(id, nombre, precio, categoria) {
+    this.id = id;
+    this.nombre = nombre;
+    this.precio = precio;
+    this.categoria = categoria;
+  }
 }
 
-const totalCompra = (cant) => {
-    console.log(`El total de su compra es de $ ${cant * producto}`)
+function comprar(nombre,email,tel,carrito) {
+  let cant = carrito.reduce((acc, item) => item.precio + acc, 0);
+  alert("Gracias " + 
+          nombre + 
+          " por tu compra. \n El total es: $" + cant);
 }
 
-// MENU INTERACTIVO
+
+let productos = [
+  new Producto(100,"Sonor SQ1",160000,"tambores"),
+  new Producto(101,"Sonor Prolite",219000,"tambores"),
+  new Producto(102,"Sonor Vintage",700000,"baterias"),
+  new Producto(103,"Sonor SQ1",620000,"baterias"),
+  new Producto(104,"Promark 5A",2610,"palillos"),
+  new Producto(105,"Promark 5B",2500,"palillos"),
+];
 
 
-do {
-    opcion = Number(prompt('Ingrese la opcion deseada:\n\n1 - Realizar una compra\n2 - Valor final\n3 - Salir'));
-    
-    switch (opcion) {
-        case 1:
-            cant = Number(prompt('Ingrese la cantidad de unidades que desea comprar'));
-            realizarCompra(cant);
-            break;
-       
-        case 2:
-            totalCompra(cant);
-            break;
-           
-        case 3:
-            alert('Gracias por su visita');
-            break;
-    
-        default:
-            alert('Esta opcion no es valida');
-            break;
+let categorias = ["tambores", "baterias", "palillos"];
+
+let carrito = [];
+let categoria = "";
+
+while (categoria != "salir" && categoria != null) {
+  let aux = categorias.join(", ");
+  categoria = prompt(
+    'Para comprar ingrese una categoria o "salir": \n('+ 
+    aux +
+    ")"
+  );
+
+  if (categoria != "salir" && categoria != null) {
+    let productoPorCategoria = productos.filter(
+      (item) => item.categoria == categoria
+    );
+
+    let seleccion = "";
+
+    for (let i = 0; i < productoPorCategoria.length; i++) {
+      seleccion += 
+      "ID: " + 
+      productoPorCategoria[i].id + 
+      " Producto: " + 
+      productoPorCategoria[i].nombre +  
+      " Precio: " +  
+      productoPorCategoria[i].precio + "\n";
     }
+    let seleccionId = parseInt(
+      prompt(
+     "Escriba el id del producto que desea comprar: \n" + seleccion
+      )
+    );
 
-} while(opcion !== 3); 
+    let productoParaCarrito = productoPorCategoria.find(
+      (item) => item.id == seleccionId
+    );
+
+    if (productoParaCarrito) {
+      carrito.push(productoParaCarrito);
+    }  
+  }
+}
 
 
+if(carrito.length > 0) {
+  alert("Ingrese sus datos para finalizar la compra");
+  let nombre = prompt("Ingrese su nombre");
+  let email = prompt ("Ingrese su mail");
+  let tel = prompt ("Ingrese su telefono");
+  comprar(nombre, email, tel, carrito)
 
-/* ESTOY SIMULANDO UNA COMPRA DE MI TIENDA ONLINE, EN DONDE EL CLIENTE TOCANDO EL NUMERO 1 REALIZA UNA COMPRA => SI COMPRA 7 O MAS UNIDADES, LE APARECE POR CONSOLA UN MENSAJE DICIENDO "Felicitaciones!! Usted compro X unidades y tiene un descuento.", SI LA COMPRA ES UN NUMERO MENOR A 7, EL MENSAJE POR CONSOLA LE DICE "Su compra de X unidades no es suficiente para acceder al descuento."
-UNA VEZ FINALIZADA LA COMPRA PUEDE OPTAR POR SABER EL VALOR FINAL DE SU COMPRA TOCANDO EL NUMERO 2 => Y POR CONSOLA LE APARECE EL VALOR FINAL QUE ES LA CANTIDAD DE PRODUCTOS QUE ELIGIO EL CLIENTE POR EL VALOR DEL PRODUCTO QUE YO LE ASIGNE (100) 
-Y TOCANDO LA OPCION 3 SALE DEL CICLO Y LE APARECE UN MENSAJE DICIENDO "GRACIAS POR SU VISITA"*/
+}
