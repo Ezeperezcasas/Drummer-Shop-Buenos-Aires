@@ -9,9 +9,7 @@ class Producto {
 
 function comprar(nombre,email,tel,carrito) {
   let cant = carrito.reduce((acc, item) => item.precio + acc, 0);
-  alert("Gracias " + 
-          nombre + 
-          " por tu compra. \n El total es: $" + cant);
+  alert(`Gracias ${nombre} por tu compra. \n El total es $: ${cant}`);
 }
 
 
@@ -33,9 +31,7 @@ let categoria = "";
 while (categoria != "salir" && categoria != null) {
   let aux = categorias.join(", ");
   categoria = prompt(
-    'Para comprar ingrese una categoria o "salir": \n('+ 
-    aux +
-    ")"
+    'Para comprar ingrese una categoria o "salir": \n ('+ aux + ")"
   );
 
   if (categoria != "salir" && categoria != null) {
