@@ -1,77 +1,147 @@
-class Producto {
-  constructor(id, nombre, precio, categoria) {
-    this.id = id;
-    this.nombre = nombre;
-    this.precio = precio;
-    this.categoria = categoria;
+//CARRITO
+
+const clickButton = document.querySelectorAll('.btn')
+const tbody = document.querySelector('.tbody')
+let carrito = []
+
+clickButton.forEach(btn => {
+  btn.addEventListener('click',addToCarritoItem)
+})
+
+function addToCarritoItem(e){
+  const button = e.target
+  const item = button.closest('.card')
+  const itemTitle = item.querySelector('.card-title').textContent;
+  const itemPrice = item.querySelector('.card-price').textContent;
+  const itemImg = item.querySelector('.card-img-top').src;
+
+  const newItem = {
+    title: itemTitle,
+    precio: itemPrice,
+    img: itemImg,
+    cantidad: 1
   }
+  
+  addItemCarrito(newItem)
 }
 
-function comprar(nombre,email,tel,carrito) {
-  let cant = carrito.reduce((acc, item) => item.precio + acc, 0);
-  alert(`Gracias ${nombre} por tu compra. \n El total es $: ${cant}`);
-}
+function addItemCarrito(newItem){
 
+  const InputElemento = tbody.getElementsByClassName('input_elemento')
 
-let productos = [
-  new Producto(100,"Sonor SQ1",160000,"tambores"),
-  new Producto(101,"Sonor Prolite",219000,"tambores"),
-  new Producto(102,"Sonor Vintage",700000,"baterias"),
-  new Producto(103,"Sonor SQ1",620000,"baterias"),
-  new Producto(104,"Promark 5A",2610,"palillos"),
-  new Producto(105,"Promark 5B",2500,"palillos"),
-];
-
-
-let categorias = ["tambores", "baterias", "palillos"];
-
-let carrito = [];
-let categoria = "";
-
-while (categoria != "salir" && categoria != null) {
-  let aux = categorias.join(", ");
-  categoria = prompt(
-    'Para comprar ingrese una categoria o "salir": \n ('+ aux + ")"
-  );
-
-  if (categoria != "salir" && categoria != null) {
-    let productoPorCategoria = productos.filter(
-      (item) => item.categoria == categoria
-    );
-
-    let seleccion = "";
-
-    for (let i = 0; i < productoPorCategoria.length; i++) {
-      seleccion += 
-      "ID: " + 
-      productoPorCategoria[i].id + 
-      " Producto: " + 
-      productoPorCategoria[i].nombre +  
-      " Precio: " +  
-      productoPorCategoria[i].precio + "\n";
+  for (let i = 0; i < carrito.length; i++) {
+    if(carrito[i].title.trim() === newItem.title.trim()){
+      carrito[i].cantidad ++;
+      const inputValue = InputElemento[i]
+      inputValue.value++;
+      CarritoTotal()
+      return null;
     }
-    let seleccionId = parseInt(
-      prompt(
-     "Escriba el id del producto que desea comprar: \n" + seleccion
-      )
-    );
+  }
 
-    let productoParaCarrito = productoPorCategoria.find(
-      (item) => item.id == seleccionId
-    );
+carrito.push(newItem)
+renderCarrito()
+}
 
-    if (productoParaCarrito) {
-      carrito.push(productoParaCarrito);
-    }  
+function renderCarrito(){
+  tbody.innerHTML = ''
+  carrito.map(item => {
+    const tr = document.createElement('tr')
+    tr.classList.add('ItemCarrito')
+    const Content = `
+    <th scope="row">1</th>
+      <td class="table_productos">
+        <img class="imgSm" src=${item.img}>
+        <h5 class="title">${item.title}</h5>
+      </td>
+      <td class="table_price"><p>${item.precio}</p></td>
+      <td class="table_cantidad">
+        <input type="number" min="1" value=${item.cantidad} class="input_elemento">
+        <button class= "delete btn btn-danger">x</button>
+      </td>`
+
+      tr.innerHTML = Content;
+      tbody.append(tr)
+
+      tr.querySelector(".delete").addEventListener('click',removeItemCarrito)
+      tr.querySelector(".input_elemento").addEventListener('change', sumaCantidad)
+  })
+  CarritoTotal()
+}
+
+function CarritoTotal(){
+  let Total = 0;
+  const itemCartTotal = document.querySelector('.itemCartTotal')
+  carrito.forEach((item) => {
+    const precio = Number(item.precio.replace("$",''))
+    Total = Total + precio*item.cantidad
+  })
+
+  itemCartTotal.innerHTML = `Total $${Total}`
+  /* addLocalStorage() */
+}
+
+function removeItemCarrito(e){
+  const buttonDelete = e.target
+  const tr =  buttonDelete.closest(".ItemCarrito")
+  const title = tr.querySelector('.title').textContent;
+  for (let i = 0;i < carrito.length;i++) {
+    if (carrito[i].title.trim() === title.trim()){
+      carrito.splice(i,1)
+    }
+  }
+  tr.remove()
+  CarritoTotal()
+}
+
+function sumaCantidad(e){
+  const sumaInput = e.target
+  const tr = sumaInput.closest(".ItemCarrito")
+  const title = tr.querySelector('.title').textContent;
+  carrito.forEach(item => {
+    if(item.title.trim === title){
+      sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;
+      item.cantidad = sumaInput.value;
+      CarritoTotal()
+    }
+  })
+  console.log(carrito)
+}
+
+/* function addLocalStorage(carrito){
+  localStorage.setItem('carrito',JSON.stringify(carrito))
+}
+
+window.onload = function(){
+  const storage = JSON.parse(localStorage.getItem('carrito'));
+  if(storage){
+    carrito = storage;
+    renderCarrito()
   }
 }
+ */
 
 
-if(carrito.length > 0) {
-  alert("Ingrese sus datos para finalizar la compra");
-  let nombre = prompt("Ingrese su nombre");
-  let email = prompt ("Ingrese su mail");
-  let tel = prompt ("Ingrese su telefono");
-  comprar(nombre, email, tel, carrito)
+// FORMULARIO
 
+let formulario;
+let inputNombre;
+let inputEmail;
+let inputConsulta;
+
+function inicializarElementos(){
+  formulario = document.getElementById("formulario");
+  inputNombre = document.getElementById("input-nombre");
+  inputEmail = document.getElementById("input-email");
+  inputConsulta = document.getElementById("input-consulta");
 }
+inicializarElementos()
+
+formulario.onsubmit = (event) => {
+  event.preventDefault();
+  console.log(inputNombre.value,inputEmail.value,inputConsulta.value)
+  formulario.reset()
+  
+}
+
+

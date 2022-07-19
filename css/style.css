@@ -6,40 +6,70 @@
   padding: 0;
   }
 
-  html{
-	
-  }
-
-    body{
+  body{
       color:#FFF;
       background-color: black;
-    }
+  }
 
-   /*  <!---------------------------------------  INICIA HEADER ---------------------------------------> */
+    /*  <!---------------------------------------  INICIA HEADER ---------------------------------------> */
 
-   header{
+  header{
        margin-bottom: 4rem;
-   }
+  }
 
     /* <!---------------------------------------  FINALIZA HEADER ---------------------------------------> */
 
     /* <!---------------------------------------  INICIA CONTENIDO PRINCIPAL ---------------------------------------> */
 
-    .card{
+  .card{
       color: black;
       margin-bottom: 2rem;
-    }
+  }
+
+  h2{
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 5rem;
+  }
+
+  #productos{
+    margin-top: 4rem;
+  }
+
+
+  #contacto{
+    margin-top: 5rem;
+
+  }
+
+  textarea{
+    height: 15.4rem;
+  }
+
+  #nosotros{
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  .p-nosotros{
+    width: 36rem;
+  }
+
+  .imgSm{
+    height: 8rem;
+    width: 8rem;
+  }
 
     /* <!---------------------------------------  FINALIZA CONTENIDO PRINCIPAL ---------------------------------------> */
 
     /* <!---------------------------------------  INICIA FOOTER ---------------------------------------> */
 
-    footer h3{
+  footer h3{
         color: #FFF;
         padding-top: 4rem;
         padding-bottom: 1rem;
         text-align: center;
-    }
+  }
 
     /* <!---------------------------------------  FINALIZA FOOTER ---------------------------------------> */
 
