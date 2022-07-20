@@ -78,16 +78,16 @@ function CarritoTotal(){
   })
 
   itemCartTotal.innerHTML = `Total $${Total}`
-  /* addLocalStorage() */
+  addLocalStorage()
 }
 
 function removeItemCarrito(e){
   const buttonDelete = e.target
   const tr =  buttonDelete.closest(".ItemCarrito")
   const title = tr.querySelector('.title').textContent;
-  for (let i = 0;i < carrito.length;i++) {
+  for (let i = 0; i < carrito.length; i++) {
     if (carrito[i].title.trim() === title.trim()){
-      carrito.splice(i,1)
+      carrito.splice(i, 1)
     }
   }
   tr.remove()
@@ -99,30 +99,16 @@ function sumaCantidad(e){
   const tr = sumaInput.closest(".ItemCarrito")
   const title = tr.querySelector('.title').textContent;
   carrito.forEach(item => {
-    if(item.title.trim === title){
+    if(item.title.trim() === title){
       sumaInput.value < 1 ? (sumaInput.value = 1) : sumaInput.value;
       item.cantidad = sumaInput.value;
       CarritoTotal()
     }
   })
-  console.log(carrito)
+
 }
 
-/* function addLocalStorage(carrito){
-  localStorage.setItem('carrito',JSON.stringify(carrito))
-}
-
-window.onload = function(){
-  const storage = JSON.parse(localStorage.getItem('carrito'));
-  if(storage){
-    carrito = storage;
-    renderCarrito()
-  }
-}
- */
-
-
-// FORMULARIO
+ // FORMULARIO
 
 let formulario;
 let inputNombre;
