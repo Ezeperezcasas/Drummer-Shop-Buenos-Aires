@@ -1,6 +1,6 @@
 //CARRITO
 
-const clickButton = document.querySelectorAll('.btn')
+const clickButton = document.querySelectorAll('.btn-primary')
 const tbody = document.querySelector('.tbody')
 let carrito = []
 
@@ -26,6 +26,13 @@ function addToCarritoItem(e){
 }
 
 function addItemCarrito(newItem){
+
+  const alert = document.querySelector('.alert')
+
+  setTimeout(function(){
+    alert.classList.add('hide')
+  }, 2000)
+  alert.classList.remove('hide')
 
   const InputElemento = tbody.getElementsByClassName('input_elemento')
 
@@ -90,6 +97,14 @@ function removeItemCarrito(e){
       carrito.splice(i, 1)
     }
   }
+
+  const alert = document.querySelector('.remove')
+
+  setTimeout(function(){
+    alert.classList.add('remove')
+  }, 2000)
+  alert.classList.remove('remove')
+
   tr.remove()
   CarritoTotal()
 }
@@ -105,10 +120,26 @@ function sumaCantidad(e){
       CarritoTotal()
     }
   })
-
 }
 
- // FORMULARIO
+function addLocalStorage(){
+  localStorage.setItem('carrito', JSON.stringify(carrito))
+}
+
+window.onload = function(){
+  const storage = JSON.parse(localStorage.getItem('carrito'));
+  if(storage){
+    carrito = storage;
+    renderCarrito()
+  }
+}
+
+
+
+
+
+
+// FORMULARIO
 
 let formulario;
 let inputNombre;
@@ -126,8 +157,7 @@ inicializarElementos()
 formulario.onsubmit = (event) => {
   event.preventDefault();
   console.log(inputNombre.value,inputEmail.value,inputConsulta.value)
-  formulario.reset()
-  
+  formulario.reset()  
 }
 
 

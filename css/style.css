@@ -1,7 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&family=Roboto+Slab:wght@300;400;500&family=Roboto:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&family=Roboto+Slab:wght@300&display=swap');
 
 *{
-  font-family:'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
   margin: 0;
   padding: 0;
   }
@@ -11,23 +11,38 @@
       background-color: black;
   }
 
-    /*  <!---------------------------------------  INICIA HEADER ---------------------------------------> */
+    /*  <!---------------------------------------  INICIA ESTILOS HEADER ---------------------------------------> */
 
   header{
        margin-bottom: 4rem;
   }
 
-    /* <!---------------------------------------  FINALIZA HEADER ---------------------------------------> */
+  header #drummer{
+    font-size: 1.5rem;
+  }
 
-    /* <!---------------------------------------  INICIA CONTENIDO PRINCIPAL ---------------------------------------> */
+  header ul{
+    font-size: 1.2rem;
+  }
+
+
+
+  header, .alert{
+    z-index: 100;
+  }
+
+    /* <!---------------------------------------  FINALIZA ESTILOS HEADER ---------------------------------------> */
+
+    /* <!---------------------------------------  INICIA ESTILOS PRODUCTOS ---------------------------------------> */
 
   .card{
+    font-family: 'Roboto Slab', serif;
       color: black;
       margin-bottom: 2rem;
   }
 
   h2{
-    text-align: center;
+    font-family: 'Roboto Slab', serif;
     margin-bottom: 3rem;
     font-size: 5rem;
   }
@@ -36,15 +51,28 @@
     margin-top: 4rem;
   }
 
+  img:hover{
+    transform: scale(1.01);
+    cursor: pointer;
+    transition: transform 2s;
+  }
+
+
+  /* <!---------------------------------------  FINALIZA ESTILOS PRODUCTOS ---------------------------------------> */
+
+  /* <!---------------------------------------  INICIA ESTILOS CONTACTO ---------------------------------------> */
 
   #contacto{
     margin-top: 5rem;
-
   }
 
   textarea{
     height: 15.4rem;
   }
+
+  /* <!---------------------------------------  FINALIZA ESTILOS CONTACTO ---------------------------------------> */
+
+  /* <!---------------------------------------  INICIA ESTILOS NOSOTROS ---------------------------------------> */
 
   #nosotros{
     margin-top: 5rem;
@@ -55,12 +83,21 @@
     width: 36rem;
   }
 
+  /* <!---------------------------------------  FINALIZA ESTILOS NOSOTROS ---------------------------------------> */
+
+  /* <!---------------------------------------  INICIA ESTILOS CARRITO ---------------------------------------> */
+  
   .imgSm{
     height: 8rem;
     width: 8rem;
   }
 
-    /* <!---------------------------------------  FINALIZA CONTENIDO PRINCIPAL ---------------------------------------> */
+  .hide, .remove{
+    display: none;
+  }
+
+
+  /* <!--------------------------------------- FINALIZA ESTILOS CARRITO ---------------------------------------> */
 
     /* <!---------------------------------------  INICIA FOOTER ---------------------------------------> */
 
