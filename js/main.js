@@ -1,4 +1,6 @@
-//CARRITO
+
+/* ---------------------------------------- CARRITO ---------------------------------------- */
+
 
 const clickButton = document.querySelectorAll('.btn-primary')
 const tbody = document.querySelector('.tbody')
@@ -136,10 +138,8 @@ window.onload = function(){
 
 
 
+/* ---------------------------------------- FORMULARIO ---------------------------------------- */
 
-
-
-// FORMULARIO
 
 let formulario;
 let inputNombre;
