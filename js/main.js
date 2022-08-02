@@ -2,7 +2,7 @@
 /* ---------------------------------------- CARRITO ---------------------------------------- */
 
 
-const clickButton = document.querySelectorAll('.btn-primary')
+const clickButton = document.querySelectorAll('.btn-dark') 
 const tbody = document.querySelector('.tbody')
 let carrito = []
 
@@ -13,11 +13,13 @@ clickButton.forEach(btn => {
 function addToCarritoItem(e){
   const button = e.target
   const item = button.closest('.card')
+  const itemCodigo = item.querySelector('.card-codigo').textContent;
   const itemTitle = item.querySelector('.card-title').textContent;
   const itemPrice = item.querySelector('.card-price').textContent;
   const itemImg = item.querySelector('.card-img-top').src;
 
   const newItem = {
+    codigo: itemCodigo,
     title: itemTitle,
     precio: itemPrice,
     img: itemImg,
@@ -58,7 +60,7 @@ function renderCarrito(){
     const tr = document.createElement('tr')
     tr.classList.add('ItemCarrito')
     const Content = `
-    <th scope="row">1</th>
+    <th scope="row">${item.codigo}</th>
       <td class="table_productos">
         <img class="imgSm" src=${item.img}>
         <h5 class="title">${item.title}</h5>
@@ -136,6 +138,16 @@ window.onload = function(){
   }
 }
 
+function finalizarCompra(){
+  Swal.fire({
+    position: 'top-center',
+    icon: 'success',
+    title: 'Su compra fue realizada con exito',
+    showConfirmButton: false,
+    timer: 1500
+  });
+}
+
 
 
 /* ---------------------------------------- FORMULARIO ---------------------------------------- */
@@ -154,10 +166,23 @@ function inicializarElementos(){
 }
 inicializarElementos()
 
+function enviarConsulta() {
+  Swal.fire({
+    title: 'Su consulta fue enviada',
+    text: 'Desea continuar?',
+    icon: 'success',
+    confirmButtonText: 'Aceptar',
+  });
+}
+
 formulario.onsubmit = (event) => {
   event.preventDefault();
   console.log(inputNombre.value,inputEmail.value,inputConsulta.value)
-  formulario.reset()  
+  formulario.reset()
 }
+
+
+
+
 
 
