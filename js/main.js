@@ -31,12 +31,13 @@ function addToCarritoItem(e){
 
 function addItemCarrito(newItem){
 
-  const alert = document.querySelector('.alert')
-
-  setTimeout(function(){
-    alert.classList.add('hide')
-  }, 2000)
-  alert.classList.remove('hide')
+  Swal.fire({
+    position: 'top-center',
+    icon: 'success',
+    title: 'Tu producto fue añadido al carrito',
+    showConfirmButton: false,
+    timer: 1500
+  })
 
   const InputElemento = tbody.getElementsByClassName('input_elemento')
 
@@ -102,12 +103,13 @@ function removeItemCarrito(e){
     }
   }
 
-  const alert = document.querySelector('.remove')
-
-  setTimeout(function(){
-    alert.classList.add('remove')
-  }, 2000)
-  alert.classList.remove('remove')
+  Swal.fire({
+    position: 'top-center',
+    icon: 'error',
+    title: 'Tu producto fue eliminado del carrito',
+    showConfirmButton: false,
+    timer: 1500
+  })
 
   tr.remove()
   CarritoTotal()
@@ -138,18 +140,6 @@ window.onload = function(){
   }
 }
 
-function finalizarCompra(){
-  Swal.fire({
-    position: 'top-center',
-    icon: 'success',
-    title: 'Su compra fue realizada con exito',
-    showConfirmButton: false,
-    timer: 1500
-  });
-}
-
-
-
 /* ---------------------------------------- FORMULARIO ---------------------------------------- */
 
 
@@ -166,6 +156,13 @@ function inicializarElementos(){
 }
 inicializarElementos()
 
+formulario.onsubmit = (event) => {
+  event.preventDefault();
+  console.log(inputNombre.value,inputEmail.value,inputConsulta.value)
+  formulario.reset()
+  
+}
+
 function enviarConsulta() {
   Swal.fire({
     title: 'Su consulta fue enviada',
@@ -173,12 +170,6 @@ function enviarConsulta() {
     icon: 'success',
     confirmButtonText: 'Aceptar',
   });
-}
-
-formulario.onsubmit = (event) => {
-  event.preventDefault();
-  console.log(inputNombre.value,inputEmail.value,inputConsulta.value)
-  formulario.reset()
 }
 
 
