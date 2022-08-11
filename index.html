@@ -244,34 +244,28 @@
         <h2 class="text-center">Contacto
         </h2>
         <div class="col">
-          <form id="formulario">
+          <form class="contact-form" id="formulario">
             <div class="mb-3 form">
               <label class="form-label" for="exampleFormControlInput1">
               Nombre y Apellido
               </label>
-              <input class="form-control" id="input-nombre" placeholder="Ezequiel Perez Casas" type="text">
+              <input class="form-control" name="nombre" id="input-nombre" placeholder="Escribe tu nombre" type="text" required>
               </input>
             </div>
             <div class="mb-3 form">
               <label class="form-label" for="exampleFormControlInput1">
               Email
               </label>
-              <input class="form-control" id="input-email" placeholder="mail@gmail.com" type="email">
+              <input class="form-control" name="email" id="input-email" placeholder="mail@gmail.com" type="email" required>
               </input>
             </div>
             <div class="mb-3 form">
               <label class="form-label" for="exampleFormControlTextarea1">
               Deja tu consulta
               </label>
-              <textarea class="form-control" id="input-consulta">
+              <textarea class="form-control" name="consulta" id="input-consulta" required>
               </textarea>
-            </div>
-            <div>
-              <button class="btn btn-light" type="submit" onclick="enviarConsulta ()">
-                <a>
-                  Enviar
-                </a>
-              </button>
+              <input type="submit" value="Enviar"> 
             </div>
           </form>
         </div>

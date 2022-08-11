@@ -142,7 +142,6 @@ window.onload = function(){
 
 /* ---------------------------------------- FORMULARIO ---------------------------------------- */
 
-
 let formulario;
 let inputNombre;
 let inputEmail;
@@ -156,21 +155,28 @@ function inicializarElementos(){
 }
 inicializarElementos()
 
-formulario.onsubmit = (event) => {
+ formulario.onsubmit = (event) => {
   event.preventDefault();
   console.log(inputNombre.value,inputEmail.value,inputConsulta.value)
   formulario.reset()
   
-}
+} 
 
-function enviarConsulta() {
-  Swal.fire({
-    title: 'Su consulta fue enviada',
-    text: 'Desea continuar?',
-    icon: 'success',
-    confirmButtonText: 'Aceptar',
-  });
-}
+
+/* EJEMPLO FETCH TRABAJO */
+
+fetch('https://rickandmortyapi.com/api/location')
+.then((resinicial) => resinicial.json())
+.then((resfinal)=> {
+  console.log(resfinal);
+})
+.catch((e) => {
+  console.log(e);
+});
+
+
+
+
 
 
 
