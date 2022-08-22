@@ -145,41 +145,41 @@ window.onload = function(){
 let formulario;
 let inputNombre;
 let inputEmail;
-let inputConsulta;
+let inputMensaje;
 
 function inicializarElementos(){
   formulario = document.getElementById("formulario");
   inputNombre = document.getElementById("input-nombre");
   inputEmail = document.getElementById("input-email");
-  inputConsulta = document.getElementById("input-consulta");
+  inputMensaje = document.getElementById("input-mensaje");
 }
 inicializarElementos()
 
- formulario.onsubmit = (event) => {
+formulario.onsubmit = (event) => {
   event.preventDefault();
-  console.log(inputNombre.value,inputEmail.value,inputConsulta.value)
-  formulario.reset()
   
-} 
-
-
-/* EJEMPLO FETCH TRABAJO */
-
-fetch('https://rickandmortyapi.com/api/location')
-.then((resinicial) => resinicial.json())
-.then((resfinal)=> {
-  console.log(resfinal);
+  fetch("https://formsubmit.co/ajax/ezeperezcasas@gmail.com", {
+    method: "POST",
+    headers: { 
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+    },
+    body: JSON.stringify({
+        name: (`Nombre:  ${inputNombre.value}`),
+        email: (`Email: ${inputEmail.value}`),
+        message: (`Mensaje:  ${inputMensaje.value}`)
+    })
 })
-.catch((e) => {
-  console.log(e);
-});
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.log(error));
 
-
-
-
-
-
-
-
-
+    Swal.fire({
+      position: 'top-center',
+      icon: 'success',
+      title: 'Tu formulario se envio con exito',
+      showConfirmButton: false,
+      timer: 2500
+    })
+}
 

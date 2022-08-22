@@ -11,7 +11,7 @@
       background-color: black;
   }
 
-    /*  <!---------------------------------------  INICIA ESTILOS HEADER ---------------------------------------> */
+  /*  <!---------------------------------------  INICIA ESTILOS HEADER ---------------------------------------> */
 
   header{
        margin-bottom: 4rem;
@@ -22,7 +22,7 @@
   }
 
   header ul{
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
 
   header ul li a img{
@@ -34,9 +34,9 @@
     z-index: 100;
   }
 
-    /* <!---------------------------------------  FINALIZA ESTILOS HEADER ---------------------------------------> */
+  /* <!---------------------------------------  FINALIZA ESTILOS HEADER ---------------------------------------> */
 
-    /* <!---------------------------------------  INICIA ESTILOS PRODUCTOS ---------------------------------------> */
+  /* <!---------------------------------------  INICIA ESTILOS PRODUCTOS ---------------------------------------> */
 
   .card{
     font-family: 'Roboto Slab', serif;
@@ -52,12 +52,6 @@
 
   #productos{
     margin-top: 4rem;
-  }
-
-  img:hover{
-    transform: scale(1.01);
-    cursor: pointer;
-    transition: transform 2s;
   }
 
   h2:hover{
@@ -79,6 +73,11 @@
     height: 15.4rem;
   }
 
+  .btn-light{
+    margin-top: 1rem;
+
+  }
+
 
   /* <!---------------------------------------  FINALIZA ESTILOS CONTACTO ---------------------------------------> */
 
@@ -87,10 +86,8 @@
   #nosotros{
     margin-top: 5rem;
     margin-bottom: 5rem;
-  }
-
-  .p-nosotros{
-    width: 36rem;
+    display: flex;
+    flex-direction: row;
   }
 
   /* <!---------------------------------------  FINALIZA ESTILOS NOSOTROS ---------------------------------------> */
@@ -109,7 +106,7 @@
 
   /* <!--------------------------------------- FINALIZA ESTILOS CARRITO ---------------------------------------> */
 
-    /* <!---------------------------------------  INICIA FOOTER ---------------------------------------> */
+  /* <!---------------------------------------  INICIA FOOTER ---------------------------------------> */
 
     footer {
       margin-top: 5rem;
@@ -136,4 +133,40 @@
       list-style-type: none;
     }
 
-    /* <!---------------------------------------  FINALIZA FOOTER ---------------------------------------> */
+  /* <!---------------------------------------  FINALIZA FOOTER ---------------------------------------> */
+
+
+  @media screen and (max-width: 860px) {
+
+    h2{
+      font-size: 3.5rem;
+    }
+
+    header #drummer{
+      font-size: 1rem;
+    }
+
+    iframe{
+      width: 370px;
+    }
+
+    #contacto{
+      flex-direction: column;
+      flex-wrap: wrap;
+    }
+
+    #nosotros{
+      flex-wrap: wrap;
+      flex-direction: column;
+    }
+
+    .p-nosotros{
+      width: 370px;
+    }
+
+    .card{
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+  }
